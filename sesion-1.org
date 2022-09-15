@@ -1,0 +1,155 @@
+* Manejo básico de Git
+
+** Videotutoriales
+- [[https://www.youtube.com/watch?v=DuewUoPnAmg&index=2&list=PLQg_Bl-6Gfo9k0KQg5vaaV9r6Hg--nMA7][Sesión 1.1]]
+- [[https://www.youtube.com/watch?v=uwqvuJ5lrIs&list=PLQg_Bl-6Gfo9k0KQg5vaaV9r6Hg--nMA7&index=3][Sesión 1.2]]
+
+** Índice
+    - Breve introducción a Git
+    - Entornos: consola y escritorio
+    - Instalación
+    - Configuración
+    - Creación de repositorios
+    - Cómo guardar cambios
+    - Historial de cambios
+    - Cómo deshacer cambios
+    - Etiquetado
+
+** Referencias
+- [[https://git-scm.com/book/es/v2/][Libro de Git]]
+- [[https://training.github.com/][Hoja de referencia de Git]]
+- [[https://training.github.com/downloads/es_ES/github-git-cheat-sheet.pdf][Hoja de referencia de Git (PDF)]]
+
+** Contenidos
+*** Instalación
+ - [[https://git-scm.com/download][https://git-scm.com/download]]
+
+*** Configuración
+ #+begin_src bash
+ # Opciones obligatorias (nombre y correo)
+ git config --global user.name "Nombre y apellido"
+ git config --global user.email CORREO@ELECTRONICO
+
+ # Editor de preferencia. Como ejemplos se incluyen el Notepad++ y el Visual Studio Code, ambos en Windows
+ # Ejecutar sólo uno de los tres comandos siguientes
+ git config --global core.editor "'C:/Program Files/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin" # Notepad ++
+ git config --global core.editor "'C:/Program Files (x86)/Notepad++/notepad++.exe' -multiInst -notabbar -nosession -noPlugin" # Notepad ++ 32 bit
+ git config --global core.editor "code --wait"
+
+ # Almacenamiento de credenciales para no pedir usuario y contraseña de GitHub cada vez que se suban cambios al servidor
+ # Ejecutar sólo uno de los dos comandos siguientes en función del sistema
+ git config --global credential.helper cache   # Para Linux
+ git config --global credential.helper wincred # Para Windows
+ #+end_src
+
+*** Creación de repositorios
+ #+begin_src bash
+ git init
+ #+end_src
+
+*** Ciclo de vida
+ [[https://git-scm.com/book/en/v2/images/lifecycle.png]]
+
+*** Revisando el estado
+ #+begin_src bash
+ git status
+ #+end_src
+
+*** Ignorar archivos
+ - Archivo ~.gitignore~
+ - Plantillas de archivos [[https://github.com/github/gitignore][.gitignore]].
+
+*** Visualizar cambios
+ #+begin_src bash
+ git diff
+ git diff <archivo>
+ #+end_src
+
+*** Añadir archivos al área de preparación (stage)
+ #+begin_src bash
+ git add <archivo> # Añadir archivos individuales
+ git add .         # Añadir todos los archivos nuevos o modificados
+ #+end_src
+
+*** Visualizar cambios de los archivos en el área de preparación
+ #+begin_src bash
+ git diff --staged
+ git diff --staged <archivo>
+ #+end_src
+
+*** Confirmar cambios (commit)
+ #+begin_src bash
+ git commit -m "MENSAJE"
+ #+end_src
+
+*** Historial de cambios
+ #+begin_src bash
+ git log
+ git log --graph
+ #+end_src
+
+*** Ver cambios realizados en anteriores commits
+ #+begin_src bash
+ git show <commit>
+ #+end_src
+
+*** Quitar archivo del área de preparación
+ #+begin_src bash
+ git reset HEAD <archivo>
+ #+end_src
+
+*** Eliminar las modificaciones con respecto al último commit
+ #+begin_src bash
+ # ¡PELIGRO! Todos los cambios que se hayan hecho al archivo desde el último commit se eliminarán
+ git checkout -- <archivo>
+ #+end_src
+
+*** Etiquetado
+ #+begin_src bash
+ git tag
+ #+end_src
+
+** Tareas
+   Realiza las tareas que se indican a continuación. Incluye las *capturas de pantalla* que se pidan en un documento tipo *LibreOffice* o *Word*.
+
+   Cuando se pida realizar un /commit/ recuerda que previamente hay que añadir los archivos al área de preparación si no se ha indicado antes en las instrucciones. En esos casos, un /commit/ significa ejecutar los comandos ~git add~ y ~git commit~.
+
+   *¡IMPORTANTE!* No utilices el bloc de notas de Windows para editar los archivos de texto de las tareas. Utiliza en su lugar un editor específico. Algunas sugerencias son:
+   - [[https://code.visualstudio.com/][Visual Studio Code]]
+   - [[https://atom.io/][Atom]]
+   - [[http://brackets.io/][Brackets]]
+   - [[https://www.sublimetext.com/][Sublime Text]]
+   - [[https://notepad-plus-plus.org/][Notepad ++]]
+
+   El bloc de notas de Windows utiliza una codificación de caracteres específica de Windows y además incluye la extensión ~.txt~ por defecto al final de los nombres de archivo. Por tanto, no es una buena elección para trabajar.
+
+   Las tareas a realizar son:
+
+   1. Instala Git en tu sistema operativo. Adjunta una captura de pantalla en la que aparezca el resultado de la ejecución del comando ~git --version~.
+   2. Realiza la *configuración de Git* según lo indicado en el tema (nombre, correo electrónico, editor de preferencia y almacenamiento de credenciales). Adjunta una captura de pantalla con el resultado de la ejecución de los comandos de configuración.
+   3. Crea una carpeta denominada ~S1R1~. Realiza las siguientes acciones en ella:
+      1) Crea un repositorio Git.
+      2) Crea un fichero denominado ~libros.txt~. Añade tres títulos de libros cada uno en una línea distinta.
+      3) Haz un primer /commit/.
+      4) Añade dos libros al archivo ~libros.txt~.
+      5) Haz un segundo /commit/.
+      6) Crea un fichero denominado ~peliculas.txt~. Añade tres títulos de películas a dicho archivo.
+      7) Haz una captura de pantalla del comando ~git status~.
+      8) Crea un fichero denominado ~comidas.txt~. Añade tres nombres de comidas a dicho archivo.
+      9) Haz un tercer /commit/ que incluya los archivos ~peliculas.txt~ y ~comidas.txt~.
+      10) Elimina el archivo ~comidas.txt~ desde el navegador de archivos.
+      11) Añade dos películas más al archivo ~peliculas.txt~.
+      12) Haz una captura de pantalla que muestre los cambios en el directorio de trabajo.
+      13) Añade los cambios al área de preparación.
+      14) Haz una captura de pantalla del comando ~git status~. Debe indicar que se ha borrado el archivo ~comidas.txt~ y que se ha modificado el archivo ~peliculas.txt~.
+      15) Haz un cuarto /commit/.
+      16) Crea un archivo denominado ~datos.bak~. Añade tres títulos de libros a dicho archivo.
+      17) Crea una subcarpeta denominada ~output~. Crea un archivo denominado ~salida.txt~ en su interior. Escribe tu nombre y apellidos en dicho archivo.
+      18) Haz una captura de pantalla del comando ~git status~. Deben aparecer los archivos ~datos.bak~ y ~output/salida.txt~ como archivos nuevos.
+      19) Crea un archivo ~.gitignore~ para que los ficheros con extensión ~.bak~ y el contenido de la carpeta ~output/~ no se incluyan en el repositorio.
+      20) Haz una nueva captura de pantalla del comando ~git status~. Ahora no deben aparecer los archivos ~datos.bak~ y ~output/salida.txt~ como archivos nuevos, sino que en su lugar debe aparecer únicamente el archivo ~.gitignore~.
+      21) Haz un último /commit/ para incluir el archivo ~.gitignore~ en el repositorio.
+      22) Haz una captura de pantalla que muestre el histórico de cambios del repositorio.
+
+*** Entrega de la tarea
+    Guarda el fichero con las capturas en formato *PDF* y nómbralo según el patrón ~APELLIDOS_NOMBRE_sesion1.pdf~. La entrega del fichero se realizará a través de la plataforma Aules.
