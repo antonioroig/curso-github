@@ -12,5 +12,5 @@
 ** Recursos
 - [[https://git-scm.com/book/es/v2][Libro de Git]]
 
-**Practica de la Season 3
--SANTIAGO GIRALDO HINCAPIE
+** Practica de la Season 3
+- SANTIAGO GIRALDO HINCAPIE
